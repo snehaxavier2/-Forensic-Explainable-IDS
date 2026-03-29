@@ -1,69 +1,65 @@
 {
-  "run_id": "20260329_093443",
+  "run_id": "20260329_164443",
   "title": "Forensic-Ready Explainable Intrusion Detection with Temporal Graph Modeling and Counterfactual Cyber Defense",
-  "created_at": "2026-03-29T09:34:43.881350",
+  "created_at": "2026-03-29T16:44:43.629134",
   "status_notes": [
     {
-      "timestamp": "2026-03-29T09:34:43.882139",
+      "timestamp": "2026-03-29T16:44:43.632542",
       "note": "Experiment registry initialized."
     },
     {
-      "timestamp": "2026-03-29T09:34:53.206242",
-      "note": "Dataset loaded successfully and basic validation completed."
+      "timestamp": "2026-03-29T16:44:46.080889",
+      "note": "Dataset loaded and validated."
     },
     {
-      "timestamp": "2026-03-29T09:35:04.450720",
+      "timestamp": "2026-03-29T16:44:48.665362",
       "note": "Data cleaning completed."
     },
     {
-      "timestamp": "2026-03-29T09:36:03.737496",
+      "timestamp": "2026-03-29T16:44:49.016029",
       "note": "Feature matrix and target vector prepared with leakage-safe column removal."
     },
     {
-      "timestamp": "2026-03-29T09:36:57.637384",
+      "timestamp": "2026-03-29T16:44:49.251695",
       "note": "Train/test split completed with stratification."
     },
     {
-      "timestamp": "2026-03-29T09:38:34.575967",
-      "note": "Baseline Random Forest model trained with diagnostics."
+      "timestamp": "2026-03-29T16:45:41.874430",
+      "note": "Random Forest baseline model trained with diagnostics."
     },
     {
-      "timestamp": "2026-03-29T09:41:13.762351",
-      "note": "Current macro-F1 = 0.9172. Promising baseline."
+      "timestamp": "2026-03-29T16:45:45.582299",
+      "note": "Macro-F1 = 0.9174. Promising baseline."
     },
     {
-      "timestamp": "2026-03-29T09:43:43.041754",
+      "timestamp": "2026-03-29T16:46:00.810214",
       "note": "Global explainability completed using shap."
     },
     {
-      "timestamp": "2026-03-29T09:45:44.522014",
-      "note": "LIME explanation completed with robust unseen-category handling."
+      "timestamp": "2026-03-29T16:46:06.605290",
+      "note": "LIME local explanation completed."
     },
     {
-      "timestamp": "2026-03-29T09:46:44.961870",
+      "timestamp": "2026-03-29T16:46:06.913999",
       "note": "Forensic prediction table constructed with hybrid suspicion scoring."
     },
     {
-      "timestamp": "2026-03-29T09:50:11.207350",
+      "timestamp": "2026-03-29T16:46:21.885013",
       "note": "Temporal interaction graph constructed with normalized edge suspicion."
     },
     {
-      "timestamp": "2026-03-29T09:50:35.312113",
+      "timestamp": "2026-03-29T16:46:21.965196",
       "note": "Graph-based suspicious node ranking completed."
     },
     {
-      "timestamp": "2026-03-29T09:51:11.721183",
-      "note": "Graph-based suspicious node ranking completed."
-    },
-    {
-      "timestamp": "2026-03-29T09:52:26.509173",
-      "note": "Counterfactual stage completed with status: failed_or_skipped."
+      "timestamp": "2026-03-29T16:46:31.500030",
+      "note": "Counterfactual stage completed with status: success."
     }
   ],
   "dataset": {
     "dataset_path": "/content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/data/ton-iot-train_test_network.csv",
     "n_rows": 211043,
-    "n_columns": 44,
+    "n_columns": 45,
     "columns": [
       "src_ip",
       "src_port",
@@ -127,26 +123,28 @@
     "identifier_availability": {
       "src_ip_present": true,
       "dst_ip_present": true,
-      "timestamp_present": false,
+      "timestamp_present": true,
       "src_ip_column": "src_ip",
       "dst_ip_column": "dst_ip",
-      "timestamp_column": null
+      "timestamp_column": "timestamp"
     }
   },
   "preprocessing": {
     "n_rows_before": 211043,
-    "n_rows_after_deduplication": 190474,
-    "duplicates_removed": 20569,
+    "n_rows_after_deduplication": 201566,
+    "duplicates_removed": 9477,
     "identifier_columns": [
       "src_ip",
-      "dst_ip"
+      "dst_ip",
+      "timestamp"
     ],
     "remaining_missing_values_total": 0,
     "dropped_columns": [
-      "type",
+      "src_ip",
       "dst_ip",
+      "type",
       "label",
-      "src_ip"
+      "timestamp"
     ],
     "n_features_raw": 40,
     "n_numeric_features": 16,
@@ -209,8 +207,8 @@
     ]
   },
   "split": {
-    "train_size": 133331,
-    "test_size": 57143,
+    "train_size": 141096,
+    "test_size": 60470,
     "test_ratio": 0.3,
     "stratified": true,
     "random_state": 42
@@ -226,175 +224,176 @@
       "n_jobs": -1,
       "random_state": 42
     },
-    "training_time_sec": 50.79555654525757,
-    "n_transformed_features": 880,
+    "training_time_sec": 49.274553060531616,
+    "n_transformed_features": 887,
     "tree_depth": {
-      "avg_depth": 19.635,
+      "avg_depth": 19.64,
       "max_depth": 20,
-      "min_depth": 8
+      "min_depth": 13
     },
     "tree_nodes": {
-      "avg_nodes": 441.84,
-      "max_nodes": 867,
-      "min_nodes": 65
+      "avg_nodes": 421.79,
+      "max_nodes": 953,
+      "min_nodes": 61
     },
-    "training_accuracy": 0.9723995169915474,
+    "training_accuracy": 0.9712040029483472,
     "top_feature_importances": [
       {
         "feature": "num__src_ip_bytes",
-        "importance": 0.10973148616089849
-      },
-      {
-        "feature": "num__src_port",
-        "importance": 0.09235483807983842
+        "importance": 0.10604985229768554
       },
       {
         "feature": "num__dst_port",
-        "importance": 0.08667564484502265
+        "importance": 0.0948867102066959
+      },
+      {
+        "feature": "num__src_port",
+        "importance": 0.08295907541767818
       },
       {
         "feature": "num__duration",
-        "importance": 0.06876669149433609
+        "importance": 0.06277781362383597
       },
       {
         "feature": "num__dst_ip_bytes",
-        "importance": 0.05089982972969521
+        "importance": 0.053285999289054656
       },
       {
         "feature": "num__src_pkts",
-        "importance": 0.05039467290739387
-      },
-      {
-        "feature": "num__dst_pkts",
-        "importance": 0.04658087564878426
+        "importance": 0.048712419282391325
       },
       {
         "feature": "num__src_bytes",
-        "importance": 0.04270705147016501
+        "importance": 0.04450833879949193
       },
       {
-        "feature": "num__dst_bytes",
-        "importance": 0.038921321974118094
-      },
-      {
-        "feature": "cat__conn_state_REJ",
-        "importance": 0.038399060512566564
-      },
-      {
-        "feature": "cat__conn_state_S0",
-        "importance": 0.03834455701791109
+        "feature": "num__dst_pkts",
+        "importance": 0.044483575993262706
       },
       {
         "feature": "cat__conn_state_OTH",
-        "importance": 0.03366406987102319
+        "importance": 0.04054459541226731
+      },
+      {
+        "feature": "num__dst_bytes",
+        "importance": 0.03991019164636958
+      },
+      {
+        "feature": "cat__conn_state_REJ",
+        "importance": 0.036798591629015776
+      },
+      {
+        "feature": "cat__conn_state_S0",
+        "importance": 0.030284635381995127
       },
       {
         "feature": "cat__conn_state_SF",
-        "importance": 0.026499155807285592
+        "importance": 0.0276250289568524
       },
       {
-        "feature": "cat__conn_state_S1",
-        "importance": 0.024348030618886657
+        "feature": "cat__conn_state_SH",
+        "importance": 0.02667007232012806
       },
       {
         "feature": "cat__service_http",
-        "importance": 0.017947754532580535
+        "importance": 0.01871258263707319
       }
     ],
     "diagnostic_notes": [
-      "Average tree depth is relatively high; this may increase variance and reduce interpretability.",
-      "The transformed feature space is large, which may increase computational cost for SHAP and LIME."
+      "Average tree depth is high; this may increase variance and reduce interpretability.",
+      "Transformed feature space is large; SHAP and LIME computations may be slower."
     ]
   },
   "evaluation": {
-    "accuracy": 0.9705825735435661,
-    "precision_macro": 0.9108134215488652,
-    "recall_macro": 0.9658504474237313,
-    "f1_macro": 0.9172441575479283,
+    "accuracy": 0.9694559285596164,
+    "precision_macro": 0.9098048945167345,
+    "recall_macro": 0.9683516104724976,
+    "f1_macro": 0.9173589923849483,
+    "roc_auc_macro_ovr": 0.9968736585988355,
     "confusion_matrix": [
       [
-        5603,
+        5992,
         0,
         0,
-        0,
-        9,
-        0,
-        1,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        5604,
-        2,
-        144,
-        43,
-        68,
-        19,
-        24,
-        0,
-        94
-      ],
-      [
-        0,
-        5,
-        5522,
-        4,
-        104,
-        6,
-        0,
-        0,
-        57,
-        0
-      ],
-      [
-        0,
-        44,
-        0,
-        5677,
-        187,
-        1,
-        0,
-        0,
-        26,
-        54
-      ],
-      [
         0,
         3,
-        0,
-        9,
-        296,
         1,
+        4,
         0,
         0,
+        0
+      ],
+      [
+        0,
+        5557,
         2,
+        213,
+        59,
+        68,
+        22,
+        16,
+        0,
+        63
+      ],
+      [
+        0,
+        38,
+        5821,
+        4,
+        94,
+        8,
+        0,
+        0,
+        34,
         1
       ],
       [
         0,
-        6,
+        84,
         0,
-        5,
-        120,
-        12453,
-        1,
-        7,
+        5668,
+        180,
+        4,
         0,
-        20
+        0,
+        15,
+        47
       ],
       [
         0,
+        0,
+        0,
+        5,
+        304,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        6,
+        155,
+        13539,
         2,
+        6,
         0,
-        7,
-        77,
+        16
+      ],
+      [
+        0,
         1,
-        5848,
+        1,
+        10,
+        76,
+        0,
+        5893,
         0,
         0,
-        24
+        19
       ],
       [
         0,
@@ -410,27 +409,27 @@
       ],
       [
         0,
-        2,
-        5,
-        1,
-        29,
+        51,
+        3,
+        4,
+        30,
         3,
         0,
-        2,
-        5958,
+        1,
+        5908,
         0
       ],
       [
         0,
-        5,
+        29,
         0,
-        93,
-        353,
-        8,
+        108,
+        333,
+        6,
         0,
-        1,
+        3,
         0,
-        4081
+        5521
       ]
     ],
     "class_order": [
@@ -448,79 +447,78 @@
     "classification_report": {
       "backdoor": {
         "precision": 1.0,
-        "recall": 0.998218421521468,
-        "f1-score": 0.9991084165477889,
-        "support": 5613.0
+        "recall": 0.9986666666666667,
+        "f1-score": 0.9993328885923949,
+        "support": 6000.0
       },
       "ddos": {
-        "precision": 0.9881855052019044,
-        "recall": 0.9343114371457152,
-        "f1-score": 0.9604936155626017,
-        "support": 5998.0
+        "precision": 0.9624177346726706,
+        "recall": 0.9261666666666667,
+        "f1-score": 0.9439442840156277,
+        "support": 6000.0
       },
       "dos": {
-        "precision": 0.9987339482727438,
-        "recall": 0.9691119691119691,
-        "f1-score": 0.983700008907099,
-        "support": 5698.0
+        "precision": 0.998970310622962,
+        "recall": 0.9701666666666666,
+        "f1-score": 0.9843578253149573,
+        "support": 6000.0
       },
       "injection": {
-        "precision": 0.9557239057239058,
-        "recall": 0.9479044915678745,
-        "f1-score": 0.9517981389890183,
-        "support": 5989.0
+        "precision": 0.9418411432369558,
+        "recall": 0.9449816605535178,
+        "f1-score": 0.9434087882822902,
+        "support": 5998.0
       },
       "mitm": {
-        "precision": 0.24302134646962234,
-        "recall": 0.9487179487179487,
-        "f1-score": 0.3869281045751634,
-        "support": 312.0
+        "precision": 0.24635332252836303,
+        "recall": 0.9712460063897763,
+        "f1-score": 0.3930187459599224,
+        "support": 313.0
       },
       "normal": {
-        "precision": 0.9929038430872269,
-        "recall": 0.9873929590865842,
-        "f1-score": 0.9901407330842014,
-        "support": 12612.0
+        "precision": 0.9930321255684319,
+        "recall": 0.9855146309506478,
+        "f1-score": 0.9892590968873302,
+        "support": 13738.0
       },
       "password": {
-        "precision": 0.9964218776622934,
-        "recall": 0.9813727135425407,
-        "f1-score": 0.9888400405816706,
-        "support": 5959.0
+        "precision": 0.9952710690761696,
+        "recall": 0.9821666666666666,
+        "f1-score": 0.9886754466907138,
+        "support": 6000.0
       },
       "ransomware": {
-        "precision": 0.9923664122137404,
+        "precision": 0.9941520467836257,
         "recall": 0.9997738068310337,
-        "f1-score": 0.9960563380281691,
+        "f1-score": 0.9969550016916657,
         "support": 4421.0
       },
       "scanning": {
-        "precision": 0.9859341386728446,
-        "recall": 0.993,
-        "f1-score": 0.989454454870049,
+        "precision": 0.9917743830787309,
+        "recall": 0.9846666666666667,
+        "f1-score": 0.988207744417496,
         "support": 6000.0
       },
       "xss": {
-        "precision": 0.9548432381843707,
-        "recall": 0.8987007267121779,
-        "f1-score": 0.9259217243335224,
-        "support": 4541.0
+        "precision": 0.9742368095994354,
+        "recall": 0.9201666666666667,
+        "f1-score": 0.9464301019970858,
+        "support": 6000.0
       },
-      "accuracy": 0.9705825735435661,
+      "accuracy": 0.9694559285596164,
       "macro avg": {
-        "precision": 0.9108134215488652,
-        "recall": 0.9658504474237313,
-        "f1-score": 0.9172441575479283,
-        "support": 57143.0
+        "precision": 0.9098048945167345,
+        "recall": 0.9683516104724976,
+        "f1-score": 0.9173589923849483,
+        "support": 60470.0
       },
       "weighted avg": {
-        "precision": 0.9822647909975512,
-        "recall": 0.9705825735435661,
-        "f1-score": 0.9751020177333712,
-        "support": 57143.0
+        "precision": 0.9806468521461216,
+        "recall": 0.9694559285596164,
+        "f1-score": 0.9737927908266789,
+        "support": 60470.0
       }
     },
-    "roc_auc_macro_ovr": 0.9967903601559851,
     "automated_verdict": {
       "baseline_strength": "strong",
       "reasons": [
@@ -528,341 +526,400 @@
         "Excellent probabilistic class separability.",
         "Global explainability evidence is available.",
         "Forensic graph layer is active.",
-        "Counterfactual stage still needs completion."
+        "Counterfactual defense evidence is available."
       ]
     }
   },
   "xai": {
     "lime_local": {
       "instance_index": 0,
-      "predicted_class_index": 5,
-      "predicted_class_name": "normal",
-      "true_class_name": "normal",
+      "predicted_class_index": 7,
+      "predicted_class_name": "ransomware",
+      "true_class_name": "ransomware",
       "top_features": [
         {
-          "feature": "proto=udp",
-          "weight": 0.16353471153122337
+          "feature": "conn_state=OTH",
+          "weight": 0.07571079447093419
         },
         {
-          "feature": "service=dns",
-          "weight": 0.10344764021205415
+          "feature": "duration <= 0.00",
+          "weight": 0.06059402263924041
+        },
+        {
+          "feature": "dst_port > 445.00",
+          "weight": 0.04666030977978547
+        },
+        {
+          "feature": "src_pkts <= 1.00",
+          "weight": 0.023747116196115508
         },
         {
           "feature": "weird_notice=-",
-          "weight": -0.07320512270445591
+          "weight": 0.02121541727843517
         },
         {
           "feature": "dns_RA=-",
-          "weight": -0.06186236206894504
+          "weight": 0.02009634709200689
         },
         {
-          "feature": "ssl_resumed=-",
-          "weight": -0.05707006625807193
+          "feature": "dst_bytes <= 0.00",
+          "weight": 0.019437975686332674
         },
         {
-          "feature": "ssl_version=-",
-          "weight": -0.056209161052490096
+          "feature": "dst_ip_bytes <= 0.00",
+          "weight": 0.018779053443607883
         },
         {
-          "feature": "http_resp_mime_types=-",
-          "weight": -0.05372990991090949
+          "feature": "http_version=-",
+          "weight": 0.018136325800779
         },
         {
-          "feature": "ssl_established=-",
-          "weight": -0.050001630390283484
-        },
-        {
-          "feature": "dns_rejected=-",
-          "weight": -0.048294218435073
-        },
-        {
-          "feature": "ssl_cipher=-",
-          "weight": -0.04137289744185101
+          "feature": "weird_name=-",
+          "weight": 0.013216674743104798
         }
       ]
     }
   },
   "forensics": {
     "prediction_table_summary": {
-      "n_rows": 57143,
-      "mean_predicted_confidence": 0.6724842091854766,
-      "mean_entropy_score": 1.2016685246661818,
-      "mean_risk_vs_normal": 0.8109681014661265,
-      "mean_suspicion_score": 1.0063183130661544,
-      "misclassification_count": 1681
+      "n_rows": 60470,
+      "mean_predicted_confidence": 0.6454752316616572,
+      "mean_entropy_score": 1.2685161818739992,
+      "mean_risk_vs_normal": 0.8113681113034821,
+      "mean_suspicion_score": 1.0399421465887408,
+      "misclassification_count": 1847
     },
     "graph_available": true,
-    "graph_n_nodes": 518,
-    "graph_n_edges": 674,
+    "graph_n_nodes": 505,
+    "graph_n_edges": 667,
     "top_suspicious_nodes": [
       {
         "node": "192.168.1.190",
-        "out_suspicion": 85.67605055852871,
-        "in_suspicion": 11.901754373341708,
-        "out_degree": 156,
+        "out_suspicion": 85.38288796960856,
+        "in_suspicion": 12.70150899201899,
+        "out_degree": 158,
         "in_degree": 14,
-        "pagerank": 0.007845544772511077,
-        "risk_score": 54.8425156443685
+        "pagerank": 0.00806973059118151,
+        "risk_score": 55.16522183156735
       },
       {
         "node": "192.168.1.31",
-        "out_suspicion": 88.73919768721912,
-        "in_suspicion": 0.0,
-        "out_degree": 69,
-        "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 42.396026086844785
+        "out_suspicion": 83.20838949617824,
+        "in_suspicion": 1.3069972360265518,
+        "out_degree": 65,
+        "in_degree": 1,
+        "pagerank": 0.002588910070266591,
+        "risk_score": 40.27597275129332
       },
       {
         "node": "192.168.1.30",
-        "out_suspicion": 74.32494967234483,
-        "in_suspicion": 2.7094061619662484,
-        "out_degree": 60,
-        "in_degree": 2,
-        "pagerank": 0.0025815303545205725,
-        "risk_score": 36.74331802359871
+        "out_suspicion": 70.88536567509317,
+        "in_suspicion": 1.387551938889209,
+        "out_degree": 57,
+        "in_degree": 1,
+        "pagerank": 0.001833263749315372,
+        "risk_score": 34.5707785044539
       },
       {
         "node": "192.168.1.34",
-        "out_suspicion": 65.77246248943996,
-        "in_suspicion": 1.3299129993165983,
-        "out_degree": 53,
-        "in_degree": 1,
-        "pagerank": 0.0022694559225329355,
-        "risk_score": 32.10841278675547
+        "out_suspicion": 62.47143685711339,
+        "in_suspicion": 0.0,
+        "out_degree": 51,
+        "in_degree": 0,
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 30.088929917995426
       },
       {
         "node": "192.168.1.152",
-        "out_suspicion": 47.97858286535682,
-        "in_suspicion": 13.077919584866471,
-        "out_degree": 55,
-        "in_degree": 11,
-        "pagerank": 0.003316305065044883,
-        "risk_score": 29.71547228261568
-      },
-      {
-        "node": "192.168.1.195",
-        "out_suspicion": 42.044117681162376,
-        "in_suspicion": 13.043899669049717,
-        "out_degree": 39,
-        "in_degree": 11,
-        "pagerank": 0.0033226056436265502,
-        "risk_score": 25.731481494308593
+        "out_suspicion": 47.580168768766605,
+        "in_suspicion": 14.849316641998756,
+        "out_degree": 51,
+        "in_degree": 12,
+        "pagerank": 0.0034423927625890118,
+        "risk_score": 29.78755097865879
       },
       {
         "node": "2405:6e00:10ce:2c00:20c:29ff:feee:e07a",
-        "out_suspicion": 36.55687007817057,
+        "out_suspicion": 36.90429465203886,
         "in_suspicion": 0.0,
-        "out_degree": 101,
+        "out_degree": 108,
         "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 24.723095043225364
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 25.56207303596561
+      },
+      {
+        "node": "192.168.1.195",
+        "out_suspicion": 41.092655444077316,
+        "in_suspicion": 13.606314618315242,
+        "out_degree": 38,
+        "in_degree": 11,
+        "pagerank": 0.0036805340124328864,
+        "risk_score": 25.419692669927983
       },
       {
         "node": "192.168.1.180",
-        "out_suspicion": 29.784021976153706,
-        "in_suspicion": 1.121405976993163,
-        "out_degree": 25,
+        "out_suspicion": 24.905958465840005,
+        "in_suspicion": 1.173076099887385,
+        "out_degree": 21,
         "in_degree": 1,
-        "pagerank": 0.001796142094960119,
-        "risk_score": 14.850389811978424
+        "pagerank": 0.0018508067237276065,
+        "risk_score": 12.514676377646964
       },
       {
         "node": "192.168.1.32",
-        "out_suspicion": 22.54106572949644,
+        "out_suspicion": 24.540348122882456,
         "in_suspicion": 0.0,
-        "out_degree": 19,
+        "out_degree": 20,
         "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 10.916773303755713
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 11.816494424303047
       },
       {
         "node": "192.168.1.193",
-        "out_suspicion": 12.474493150698958,
-        "in_suspicion": 10.18432457811353,
-        "out_degree": 12,
-        "in_degree": 9,
-        "pagerank": 0.004759751411261114,
-        "risk_score": 10.146046583995894
+        "out_suspicion": 11.392651339906648,
+        "in_suspicion": 7.922840699691996,
+        "out_degree": 11,
+        "in_degree": 7,
+        "pagerank": 0.004736265475132423,
+        "risk_score": 8.734859998965284
       },
       {
         "node": "192.168.1.39",
-        "out_suspicion": 11.205650372878614,
+        "out_suspicion": 11.473403224279185,
         "in_suspicion": 0.0,
         "out_degree": 9,
         "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 5.382607161108583
-      },
-      {
-        "node": "192.168.1.1",
-        "out_suspicion": 3.6077828789473396,
-        "in_suspicion": 7.949029770239219,
-        "out_degree": 4,
-        "in_degree": 7,
-        "pagerank": 0.002527464634979861,
-        "risk_score": 4.928327575577698
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 5.489716464861739
       },
       {
         "node": "192.168.1.36",
-        "out_suspicion": 9.338590475545047,
-        "in_suspicion": 0.0,
-        "out_degree": 7,
-        "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 4.435783202175155
-      },
-      {
-        "node": "2405:6e00:10ce:2c00:9064:17:85d2:57d4",
-        "out_suspicion": 8.028626182962425,
+        "out_suspicion": 10.63769502875782,
         "in_suspicion": 0.0,
         "out_degree": 8,
         "in_degree": 0,
-        "pagerank": 0.0017350597856801758,
-        "risk_score": 4.011797485142106
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 5.055433186653192
+      },
+      {
+        "node": "192.168.1.1",
+        "out_suspicion": 3.8809331057675522,
+        "in_suspicion": 6.653863931970222,
+        "out_degree": 4,
+        "in_degree": 6,
+        "pagerank": 0.002213259631138607,
+        "risk_score": 4.548975073824315
       },
       {
         "node": "192.168.1.255",
         "out_suspicion": 0.0,
-        "in_suspicion": 7.648336815777976,
+        "in_suspicion": 8.848330471559978,
         "out_degree": 0,
         "in_degree": 10,
-        "pagerank": 0.0066828571161655585,
-        "risk_score": 3.295837616156626
+        "pagerank": 0.0066538389754773825,
+        "risk_score": 3.6558299092630886
       },
       {
-        "node": "192.168.1.37",
-        "out_suspicion": 4.968151123259882,
-        "in_suspicion": 2.278320445570131,
-        "out_degree": 4,
-        "in_degree": 2,
-        "pagerank": 0.004329945093375968,
-        "risk_score": 3.2716225719936673
-      },
-      {
-        "node": "192.168.1.33",
-        "out_suspicion": 4.926620091975298,
-        "in_suspicion": 2.310591720534683,
-        "out_degree": 4,
-        "in_degree": 2,
-        "pagerank": 0.004329945093375968,
-        "risk_score": 3.2646915419691993
+        "node": "2405:6e00:10ce:2c00:9064:17:85d2:57d4",
+        "out_suspicion": 7.166023414614618,
+        "in_suspicion": 0.0,
+        "out_degree": 7,
+        "in_degree": 0,
+        "pagerank": 0.0017758757503220045,
+        "risk_score": 3.566764540995912
       },
       {
         "node": "117.18.237.29",
         "out_suspicion": 0.0,
-        "in_suspicion": 7.856195558849649,
+        "in_suspicion": 9.385598242791422,
         "out_degree": 0,
-        "in_degree": 6,
-        "pagerank": 0.0020010855981964252,
-        "risk_score": 2.9572588847745336
+        "in_degree": 7,
+        "pagerank": 0.0021253420955815666,
+        "risk_score": 3.5161045412565435
       },
       {
         "node": "192.168.1.184",
-        "out_suspicion": 0.9800119291999423,
-        "in_suspicion": 6.138499187116274,
+        "out_suspicion": 1.097251389438984,
+        "in_suspicion": 7.723817321737638,
         "out_degree": 1,
-        "in_degree": 5,
-        "pagerank": 0.013197733352841811,
-        "risk_score": 2.8361940744854275
+        "in_degree": 6,
+        "pagerank": 0.01381274136941899,
+        "risk_score": 3.4588083005707686
       },
       {
-        "node": "192.168.1.194",
-        "out_suspicion": 1.8672604682193241,
-        "in_suspicion": 4.447065950981083,
-        "out_degree": 2,
-        "in_degree": 4,
-        "pagerank": 0.003403986237740452,
-        "risk_score": 2.6817047698296026
+        "node": "192.168.1.33",
+        "out_suspicion": 5.03469615639154,
+        "in_suspicion": 2.4122186479802235,
+        "out_degree": 4,
+        "in_degree": 2,
+        "pagerank": 0.004457379002716396,
+        "risk_score": 3.3384355327512263
+      },
+      {
+        "node": "192.168.1.37",
+        "out_suspicion": 4.957824796938681,
+        "in_suspicion": 2.4034506457356066,
+        "out_degree": 4,
+        "in_degree": 2,
+        "pagerank": 0.004457379002716396,
+        "risk_score": 3.3050565882966976
+      },
+      {
+        "node": "192.168.1.169",
+        "out_suspicion": 3.465037771416586,
+        "in_suspicion": 3.423892466653479,
+        "out_degree": 4,
+        "in_degree": 3,
+        "pagerank": 0.0019083170662321845,
+        "risk_score": 3.1135645119759245
       }
     ]
   },
   "counterfactuals": {
-    "status": "failed_or_skipped",
-    "reason": "The target class for normal could not be identified"
+    "status": "success",
+    "query_index": 148914,
+    "original_prediction": "password",
+    "target_class": "normal",
+    "available_classes": [
+      "backdoor",
+      "ddos",
+      "dos",
+      "injection",
+      "mitm",
+      "normal",
+      "password",
+      "ransomware",
+      "scanning",
+      "xss"
+    ],
+    "counterfactual_examples": [
+      {
+        "src_port": 49482,
+        "dst_port": 65358.0,
+        "proto": "tcp",
+        "service": "http",
+        "duration": 0.013203,
+        "src_bytes": 167,
+        "dst_bytes": 2987,
+        "conn_state": "SF",
+        "missed_bytes": 0,
+        "src_pkts": 5,
+        "src_ip_bytes": 435,
+        "dst_pkts": 7,
+        "dst_ip_bytes": 3359,
+        "dns_query": "-",
+        "dns_qclass": 0,
+        "dns_qtype": 0,
+        "dns_rcode": 0,
+        "dns_AA": "-",
+        "dns_RD": "-",
+        "dns_RA": "F",
+        "dns_rejected": "-",
+        "ssl_version": "TLSv13",
+        "ssl_cipher": "-",
+        "ssl_resumed": "-",
+        "ssl_established": "-",
+        "ssl_subject": "-",
+        "ssl_issuer": "-",
+        "http_trans_depth": "-",
+        "http_method": "-",
+        "http_uri": "-",
+        "http_version": "-",
+        "http_request_body_len": 0,
+        "http_response_body_len": 0,
+        "http_status_code": 0,
+        "http_user_agent": "-",
+        "http_orig_mime_types": "-",
+        "http_resp_mime_types": "-",
+        "weird_name": "-",
+        "weird_addl": "-",
+        "weird_notice": "-",
+        "type": 5
+      }
+    ]
   },
   "global_explainability": {
     "method_selected": "shap",
     "top_features": [
       {
         "feature": "num__src_ip_bytes",
-        "importance": 0.01600093414038948
+        "importance": 0.014288603577266192
       },
       {
         "feature": "num__dst_port",
-        "importance": 0.015043017175471407
-      },
-      {
-        "feature": "num__duration",
-        "importance": 0.012624802417431396
-      },
-      {
-        "feature": "cat__conn_state_REJ",
-        "importance": 0.011291713551291953
-      },
-      {
-        "feature": "num__src_bytes",
-        "importance": 0.010944998564706843
-      },
-      {
-        "feature": "num__dst_bytes",
-        "importance": 0.01055947478114248
-      },
-      {
-        "feature": "cat__conn_state_SF",
-        "importance": 0.0103567596968082
+        "importance": 0.014069939725144719
       },
       {
         "feature": "num__src_port",
-        "importance": 0.009027167694478555
+        "importance": 0.011228321848559842
       },
       {
-        "feature": "num__dst_ip_bytes",
-        "importance": 0.008671747339619557
+        "feature": "cat__conn_state_REJ",
+        "importance": 0.01115121386188543
       },
       {
-        "feature": "cat__service_http",
-        "importance": 0.008651649053221562
-      },
-      {
-        "feature": "cat__conn_state_S0",
-        "importance": 0.008531271928763273
-      },
-      {
-        "feature": "num__src_pkts",
-        "importance": 0.008391916673667342
-      },
-      {
-        "feature": "num__dst_pkts",
-        "importance": 0.008277510701558083
-      },
-      {
-        "feature": "cat__service_-",
-        "importance": 0.006384261111380035
+        "feature": "num__duration",
+        "importance": 0.010196679811215519
       },
       {
         "feature": "cat__conn_state_OTH",
-        "importance": 0.00516742293124969
+        "importance": 0.009919929636145462
       },
       {
         "feature": "cat__proto_tcp",
-        "importance": 0.004521737471652575
+        "importance": 0.009857733136602558
       },
       {
-        "feature": "cat__proto_udp",
-        "importance": 0.004072165712662147
+        "feature": "num__src_pkts",
+        "importance": 0.008658031097548752
+      },
+      {
+        "feature": "num__dst_bytes",
+        "importance": 0.008431585792135463
       },
       {
         "feature": "cat__service_dns",
-        "importance": 0.0031496456589002377
+        "importance": 0.008429991440068263
       },
       {
-        "feature": "cat__conn_state_S1",
-        "importance": 0.002827200828690227
+        "feature": "cat__conn_state_SF",
+        "importance": 0.00822042413550558
       },
       {
-        "feature": "cat__conn_state_S3",
-        "importance": 0.002517033462639223
+        "feature": "num__dst_ip_bytes",
+        "importance": 0.008083348318430803
+      },
+      {
+        "feature": "num__dst_pkts",
+        "importance": 0.007745895240623241
+      },
+      {
+        "feature": "cat__proto_udp",
+        "importance": 0.00746018920173232
+      },
+      {
+        "feature": "num__src_bytes",
+        "importance": 0.0071608628107366935
+      },
+      {
+        "feature": "cat__dns_RA_F",
+        "importance": 0.006274410651406511
+      },
+      {
+        "feature": "cat__conn_state_S0",
+        "importance": 0.005647498645324544
+      },
+      {
+        "feature": "cat__service_-",
+        "importance": 0.0056346904649664485
+      },
+      {
+        "feature": "cat__service_http",
+        "importance": 0.004921265659980585
+      },
+      {
+        "feature": "cat__dns_rejected_F",
+        "importance": 0.00471911506124249
       }
     ]
   },
