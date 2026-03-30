@@ -1,12 +1,12 @@
 Forensic-Ready Explainable IDS — Compact Result Report
 ==========================================================
-Run ID             : 20260330_143648
-Created at         : 2026-03-30T14:36:48.757600
+Run ID             : 20260330_180803
+Created at         : 2026-03-30T18:08:03.896466
 
 Model:
   Model name        : RandomForestClassifier
   Trees             : 200
-  Training time (s) : 228.26
+  Training time (s) : 332.21
   Training accuracy : 0.9999
 
 Core predictive metrics:
@@ -17,7 +17,7 @@ Core predictive metrics:
   ROC-AUC macro OVR : 0.9979
 
 Explainability:
-  XAI method        : permutation_importance
+  XAI method        : shap
   Transformed feats : 887
 
 Forensic graph:
@@ -38,3 +38,7 @@ Saved artifacts:
   - Top suspicious nodes table: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/tables/top_suspicious_nodes.csv
   - Top suspicious flows table: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/tables/top_suspicious_flows.csv
   - Pipeline diagram for MethodsX: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/pipeline_diagram.png
+  - Ablation study Precision@k figure: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/ablation_precision_at_k.png
+  - Ablation study Recall@10 and MRR figure: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/ablation_recall_mrr.png
+  - Suspicious flow concentration curve: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/flow_concentration.png
+  - Counterfactual probability shift figure: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/counterfactual_shift.png

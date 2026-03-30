@@ -1,7 +1,7 @@
 {
   "model_name": "RandomForestClassifier",
   "n_estimators": 200,
-  "training_time_sec": 228.26,
+  "training_time_sec": 332.21,
   "training_accuracy": 0.9999,
   "test_accuracy": 0.989,
   "macro_precision": 0.9642,
@@ -12,6 +12,6 @@
   "graph_available": true,
   "graph_n_nodes": 505,
   "graph_n_edges": 667,
-  "xai_method": "permutation_importance",
+  "xai_method": "shap",
   "counterfactual_status": "success"
 }
