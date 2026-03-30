@@ -1,59 +1,71 @@
 {
-  "run_id": "20260330_103820",
+  "run_id": "20260330_110647",
   "title": "Forensic-Ready Explainable Intrusion Detection with Temporal Graph Modeling and Counterfactual Cyber Defense",
-  "created_at": "2026-03-30T10:38:20.978819",
+  "created_at": "2026-03-30T11:06:47.432438",
   "status_notes": [
     {
-      "timestamp": "2026-03-30T10:38:20.982513",
+      "timestamp": "2026-03-30T11:06:47.450667",
       "note": "Experiment registry initialized."
     },
     {
-      "timestamp": "2026-03-30T10:38:22.543000",
+      "timestamp": "2026-03-30T11:06:52.909212",
       "note": "Dataset loaded and validated."
     },
     {
-      "timestamp": "2026-03-30T10:38:26.609446",
+      "timestamp": "2026-03-30T11:06:58.484174",
       "note": "Data cleaning completed."
     },
     {
-      "timestamp": "2026-03-30T10:38:27.292455",
+      "timestamp": "2026-03-30T11:06:59.398634",
       "note": "Feature matrix and target vector prepared with leakage-safe column removal."
     },
     {
-      "timestamp": "2026-03-30T10:38:27.768831",
+      "timestamp": "2026-03-30T11:06:59.924309",
       "note": "Train/test split completed with stratification."
     },
     {
-      "timestamp": "2026-03-30T10:39:19.189837",
+      "timestamp": "2026-03-30T11:08:01.590310",
       "note": "Random Forest baseline model trained with diagnostics."
     },
     {
-      "timestamp": "2026-03-30T10:39:22.412481",
+      "timestamp": "2026-03-30T11:08:05.053567",
       "note": "Macro-F1 = 0.9174. Promising baseline."
     },
     {
-      "timestamp": "2026-03-30T10:39:23.976850",
+      "timestamp": "2026-03-30T11:08:10.401184",
       "note": "Global explainability completed using shap."
     },
     {
-      "timestamp": "2026-03-30T10:39:26.352129",
+      "timestamp": "2026-03-30T11:08:12.294145",
       "note": "LIME local explanation completed."
     },
     {
-      "timestamp": "2026-03-30T10:39:26.559138",
+      "timestamp": "2026-03-30T11:08:12.434481",
       "note": "Forensic prediction table constructed with hybrid suspicion scoring."
     },
     {
-      "timestamp": "2026-03-30T10:39:30.884881",
+      "timestamp": "2026-03-30T11:08:15.490469",
       "note": "Temporal interaction graph constructed with normalized edge suspicion."
     },
     {
-      "timestamp": "2026-03-30T10:39:31.195509",
+      "timestamp": "2026-03-30T11:08:15.525782",
       "note": "Graph-based suspicious node ranking completed."
     },
     {
-      "timestamp": "2026-03-30T10:39:33.057673",
+      "timestamp": "2026-03-30T11:08:17.673582",
       "note": "Counterfactual stage completed with status: success."
+    },
+    {
+      "timestamp": "2026-03-30T11:08:25.818446",
+      "note": "Ablation study completed."
+    },
+    {
+      "timestamp": "2026-03-30T11:08:26.345282",
+      "note": "Forensic flow concentration analysis completed."
+    },
+    {
+      "timestamp": "2026-03-30T11:08:27.141034",
+      "note": "Counterfactual probability shift visualization completed."
     }
   ],
   "dataset": {
@@ -140,11 +152,11 @@
     ],
     "remaining_missing_values_total": 0,
     "dropped_columns": [
-      "timestamp",
-      "type",
       "src_ip",
+      "timestamp",
+      "dst_ip",
       "label",
-      "dst_ip"
+      "type"
     ],
     "n_features_raw": 40,
     "n_numeric_features": 16,
@@ -224,7 +236,7 @@
       "n_jobs": -1,
       "random_state": 42
     },
-    "training_time_sec": 47.95426821708679,
+    "training_time_sec": 58.18842077255249,
     "n_transformed_features": 887,
     "tree_depth": {
       "avg_depth": 19.64,
@@ -555,7 +567,7 @@
         },
         {
           "feature": "weird_notice=-",
-          "weight": 0.021215417278435178
+          "weight": 0.021215417278435175
         },
         {
           "feature": "dns_RA=-",
@@ -563,7 +575,7 @@
         },
         {
           "feature": "dst_bytes <= 0.00",
-          "weight": 0.019437975686332674
+          "weight": 0.019437975686332678
         },
         {
           "feature": "dst_ip_bytes <= 0.00",
@@ -740,11 +752,11 @@
       {
         "node": "192.168.1.184",
         "out_suspicion": 1.097251389438984,
-        "in_suspicion": 7.723817321737639,
+        "in_suspicion": 7.723817321737638,
         "out_degree": 1,
         "in_degree": 6,
         "pagerank": 0.01381274136941899,
-        "risk_score": 3.4588083005707695
+        "risk_score": 3.4588083005707686
       },
       {
         "node": "192.168.1.33",
@@ -773,7 +785,42 @@
         "pagerank": 0.0019083170662321845,
         "risk_score": 3.1135645119759245
       }
-    ]
+    ],
+    "ablation_study": {
+      "Full Graph-Aware": {
+        "precision_at_3": 0.6666666666666666,
+        "precision_at_5": 0.6,
+        "precision_at_10": 0.5,
+        "recall_at_10": 0.4166666666666667,
+        "mrr": 0.1355584688789023
+      },
+      "Out-Degree Only": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.4,
+        "precision_at_10": 0.5,
+        "recall_at_10": 0.4166666666666667,
+        "mrr": 0.11152028828659262
+      },
+      "In-Degree Only": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "precision_at_10": 0.1,
+        "recall_at_10": 0.08333333333333333,
+        "mrr": 0.019951243535424146
+      },
+      "No-Graph Baseline": {
+        "precision_at_3": 0.6666666666666666,
+        "precision_at_5": 0.8,
+        "precision_at_10": 0.6,
+        "recall_at_10": 0.5,
+        "mrr": 0.19392289645897806
+      }
+    },
+    "flow_concentration": {
+      "total_edges": 667,
+      "top_10_pct_flows_account_for_pct_suspicion": 16.54,
+      "top_20_pct_flows_account_for_pct_suspicion": 32.02
+    }
   },
   "counterfactuals": {
     "status": "success",
@@ -795,11 +842,11 @@
     "counterfactual_examples": [
       {
         "src_port": 49482,
-        "dst_port": 42065.0,
-        "proto": "tcp",
+        "dst_port": 17949.0,
+        "proto": "udp",
         "service": "http",
         "duration": 0.013203,
-        "src_bytes": 1124693406.0,
+        "src_bytes": 167,
         "dst_bytes": 2987,
         "conn_state": "SF",
         "missed_bytes": 0,
@@ -822,7 +869,7 @@
         "ssl_subject": "-",
         "ssl_issuer": "-",
         "http_trans_depth": "-",
-        "http_method": "-",
+        "http_method": "GET",
         "http_uri": "-",
         "http_version": "-",
         "http_request_body_len": 0,
@@ -836,7 +883,35 @@
         "weird_notice": "-",
         "type": 5
       }
-    ]
+    ],
+    "probability_shift_viz": {
+      "normal_prob_original": 0.012503861315470821,
+      "normal_prob_counterfactual": 0.3146697898087165,
+      "original_probabilities": {
+        "backdoor": 0.014520180011248475,
+        "ddos": 0.03926128146304143,
+        "dos": 0.012605455454075645,
+        "injection": 0.21055820170884224,
+        "mitm": 0.04671246560053682,
+        "normal": 0.012503861315470821,
+        "password": 0.5934746450043514,
+        "ransomware": 0.010961715166404751,
+        "scanning": 0.011432479025650923,
+        "xss": 0.04796971525036607
+      },
+      "counterfactual_probabilities": {
+        "backdoor": 0.03251547122932405,
+        "ddos": 0.04629650866689956,
+        "dos": 0.007715283106664857,
+        "injection": 0.12414808420398671,
+        "mitm": 0.09492384762184841,
+        "normal": 0.3146697898087165,
+        "password": 0.300950408916085,
+        "ransomware": 0.02515553601016252,
+        "scanning": 0.022126674960239966,
+        "xss": 0.0314983954760633
+      }
+    }
   },
   "global_explainability": {
     "method_selected": "shap",

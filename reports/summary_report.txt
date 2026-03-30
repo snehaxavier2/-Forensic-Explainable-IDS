@@ -1,7 +1,7 @@
 Forensic-Ready Explainable IDS — Compact Result Report
 ==========================================================
-Run ID     : 20260330_093938
-Created at : 2026-03-30T09:39:38.260654
+Run ID     : 20260330_110647
+Created at : 2026-03-30T11:06:47.432438
 
 Core predictive metrics:
   Accuracy          : 0.9694559285596164
@@ -27,3 +27,4 @@ Saved artifacts:
   - Global feature importance figure: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/global_feature_importance.png
   - Top suspicious nodes table: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/tables/top_suspicious_nodes.csv
   - Top suspicious flows table: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/tables/top_suspicious_flows.csv
+  - Pipeline diagram for MethodsX: /content/drive/MyDrive/Outputs/Forensic_Ready_XAI_IDS/article_assets/figures/pipeline_diagram.png
